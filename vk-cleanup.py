@@ -17,6 +17,7 @@ from scopes import Video, Group
 def main(app, login, password, scope):
     vk_api = init_vk_api(app, login, password, scope)
     user_id = fetch_user_id(vk_api)
+    click.confirm('Going to delete %s. Do you want to continue?' % scope, abort=True)
     collection = init_requested_scope(scope, vk_api)
     collection.remove(user_id, collection.fetch(user_id))
 
